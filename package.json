@@ -1,10 +1,13 @@
 {
   "name": "songbook-md-json-parser",
   "version": "1.0.0",
-  "description": "Parse markdown song files to JSON format and back",
+  "description": "Parse markdown song files to JSON format and back to markdown",
   "main": "index.js",
   "bin": {
-    "songbook-md-json-parser": "./build.js"
+    "songbook-build": "./build.js",
+    "songbook-parse-songs": "./parse-songs.js",
+    "songbook-parse-contents": "./parse-contents.js",
+    "songbook-parse-index": "./parse-index.js"
   },
   "exports": {
     ".": {
@@ -13,6 +16,10 @@
     }
   },
   "scripts": {
+    "build": "node build.js",
+    "parse:songs": "node parse-songs.js",
+    "parse:contents": "node parse-contents.js",
+    "parse:index": "node parse-index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
