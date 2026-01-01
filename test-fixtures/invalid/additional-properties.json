@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "page": 1,
+    "first_line": "Test first line",
+    "invalid_property": "This should not be here"
+  },
+  "title": [
+    "Test Song"
+  ],
+  "author": [
+    "Test Author"
+  ],
+  "verses": [
+    {
+      "number": "1",
+      "text": [
+        "This is a test verse"
+      ]
+    }
+  ]
+}

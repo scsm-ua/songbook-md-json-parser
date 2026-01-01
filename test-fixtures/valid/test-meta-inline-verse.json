@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "page": 998,
+    "first_line": "Test song with inline verse formatting",
+    "inline verse": "non bold"
+  },
+  "title": [
+    "Song With Inline Verse"
+  ],
+  "author": [
+    "Test Author"
+  ],
+  "verses": [
+    {
+      "number": "1",
+      "text": [
+        "This song uses inline verse formatting",
+        "The verses are displayed inline"
+      ],
+      "translation": [
+        "This is the translation"
+      ]
+    }
+  ]
+}

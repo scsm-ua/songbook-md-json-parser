@@ -22,8 +22,10 @@
     "parse:songs": "node parse-songs.js",
     "parse:contents": "node parse-contents.js",
     "parse:index": "node parse-index.js",
-    "validate": "node validate.js ./example/json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "validate": "node validate.js ./test-fixtures/valid",
+    "validate:invalid": "node validate.js ./test-fixtures/invalid",
+    "test": "node test-exit-codes.js",
+    "test:validation": "node test-exit-codes.js"
   },
   "keywords": [
     "songbook",
