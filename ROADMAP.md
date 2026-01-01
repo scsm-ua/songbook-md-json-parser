@@ -1,5 +1,6 @@
 
 - make schema and validation (use AJV ?)
+- make validation for markdown
 - make proper validation and parsing error processing to support build from parent songbook
 
 Sonbooks processing:

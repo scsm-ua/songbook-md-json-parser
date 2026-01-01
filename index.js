@@ -5,6 +5,11 @@ const { render } = require('./lib/render');
 const { parseContents, parseIndex } = require('./lib/parse-meta');
 const { getDefaultPaths } = require('./lib/config');
 const { build } = require('./build');
+const { 
+    validateSong, 
+    validateSongFile, 
+    formatValidationResults 
+} = require('./lib/validate');
 
 module.exports = {
     build,
@@ -14,5 +19,9 @@ module.exports = {
     parseIndex,
     Song,
     processFiles,
-    getDefaultPaths
+    getDefaultPaths,
+    validateSongbook,
+    validateSongbookFile,
+    validateDirectory,
+    formatValidationResults
 };
