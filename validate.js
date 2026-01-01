@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
 const { validateDirectory, formatValidationResults } = require('./lib/validate');
+const { getDefaultPaths } = require('./lib/config');
 const path = require('path');
 
-// Get directory from command line arguments or use default
-const dirPath = process.argv[2] || './example/json';
+// Get directory from command line arguments or use default from config
+const defaultPaths = getDefaultPaths(process.cwd());
+const dirPath = process.argv[2] || defaultPaths.jsonDir;
 const recursive = process.argv.includes('--recursive') || process.argv.includes('-r');
 
 console.log(`\n🔍 Validating JSON files in: ${path.resolve(dirPath)}`);
