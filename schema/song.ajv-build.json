@@ -14,6 +14,7 @@
       "type": "object",
       "properties": {
         "page": {
+          "description": "Page number(s) in the songbook",
           "oneOf": [
             {
               "type": "number",
@@ -31,44 +32,43 @@
               },
               "minItems": 1
             }
-          ],
-          "description": "Page number(s) in the songbook"
+          ]
         },
         "first_line": {
-          "type": "string",
-          "description": "First line of the song"
+          "description": "First line of the song",
+          "type": "string"
         },
         "author": {
-          "type": "string",
-          "description": "Author of the song (single string in meta)"
+          "description": "Author of the song (single string in meta)",
+          "type": "string"
         },
         "no-author": {
-          "type": "number",
           "description": "Flag indicating no author (value must be 1)",
           "enum": [
             1
-          ]
+          ],
+          "type": "number"
         },
         "translation": {
-          "type": "string",
           "description": "Translation status (only \"no\" is allowed)",
           "enum": [
             "no"
-          ]
+          ],
+          "type": "string"
         },
         "verse parentheses": {
-          "type": "string",
           "description": "Formatting option for verse parentheses",
           "enum": [
             "non bold"
-          ]
+          ],
+          "type": "string"
         },
         "inline verse": {
-          "type": "string",
           "description": "Formatting option for inline verses",
           "enum": [
             "non bold"
-          ]
+          ],
+          "type": "string"
         }
       },
       "required": [
@@ -106,26 +106,70 @@
       },
       "description": "Song subtitle(s)"
     },
+    "verses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "description": "Verse number",
+            "type": "string"
+          },
+          "text": {
+            "description": "Verse lines",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "word_by_word": {
+            "description": "Word-by-word translation for this verse",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "translation": {
+            "description": "Verse translation",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subtitle": {
+            "description": "Subtitle for this verse or section",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "Song verses",
+      "minItems": 1
+    },
     "embeds": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
           "title": {
-            "type": "string",
-            "description": "Title of the embed"
+            "description": "Title of the embed",
+            "type": "string"
           },
           "embed_url": {
-            "type": "string",
-            "description": "URL of the embedded content"
+            "description": "URL of the embedded content",
+            "type": "string"
           },
           "iframe_url": {
-            "type": "string",
-            "description": "URL for iframe embedding"
+            "description": "URL for iframe embedding",
+            "type": "string"
           },
           "embed_code": {
-            "type": "string",
-            "description": "HTML embed code"
+            "description": "HTML embed code",
+            "type": "string"
           }
         },
         "required": [
@@ -137,50 +181,6 @@
         "additionalProperties": false
       },
       "description": "Audio/video embeds for the song"
-    },
-    "verses": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "number": {
-            "type": "string",
-            "description": "Verse number"
-          },
-          "text": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Verse lines",
-            "minItems": 1
-          },
-          "word_by_word": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Word-by-word translation for this verse"
-          },
-          "translation": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Verse translation"
-          },
-          "subtitle": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Subtitle for this verse or section"
-          }
-        },
-        "additionalProperties": false
-      },
-      "description": "Song verses",
-      "minItems": 1
     }
   },
   "anyOf": [

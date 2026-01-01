@@ -75,24 +75,17 @@ function getSimpleType(type) {
 function convertObjectSchema(schema) {
   const result = {
     type: 'object',
-    properties: {}
+    properties: {},
+    required: []
   };
-  
-  const required = [];
   
   for (const [key, fieldDef] of Object.entries(schema)) {
     if (fieldDef.required) {
-      required.push(key);
+      result.required.push(key);
     }
     
     const propSchema = {};
-    
-    // Handle type
-    if (fieldDef.type) {
-      const typeResult = convertType(fieldDef.type);
-      Object.assign(propSchema, typeResult);
-    }
-    
+
     // Add description
     if (fieldDef.description) {
       propSchema.description = fieldDef.description;
@@ -102,17 +95,26 @@ function convertObjectSchema(schema) {
     if (fieldDef.enum) {
       propSchema.enum = fieldDef.enum;
     }
-    
+
+    // Handle type
+    if (fieldDef.type) {
+      const typeResult = convertType(fieldDef.type);
+      Object.assign(propSchema, typeResult);
+    }
+
     // Add minItems for arrays
-    if (fieldDef.minItems && propSchema.type === 'array') {
-      propSchema.minItems = fieldDef.minItems;
+    // Use !== undefined to handle zero (0 is falsy but valid)
+    if (fieldDef.minItems !== undefined) {
+      if (propSchema.type === 'array') {
+        propSchema.minItems = fieldDef.minItems;
+      }
     }
     
     result.properties[key] = propSchema;
   }
   
-  if (required.length > 0) {
-    result.required = required;
+  if (result.required.length === 0) {
+    delete result.required;
   }
   
   result.additionalProperties = false;
