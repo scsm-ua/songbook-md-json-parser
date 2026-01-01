@@ -96,7 +96,7 @@ const VerseSchema = {
   }
 };
 
-const CustomRules = {
+const AuthorRules = {
   // Author requirement: must have root-level author OR (meta.author OR meta.no-author)
   anyOf: [
     {
@@ -156,12 +156,6 @@ const SongSchema = {
     type: [String]
   },
 
-  // Embeds array - optional
-  embeds: {
-    description: 'Audio/video embeds for the song',
-    type: [EmbedSchema]
-  },
-
   // Verses array - required
   verses: {
     description: 'Song verses',
@@ -170,7 +164,13 @@ const SongSchema = {
     minItems: 1
   },
 
-  custom_rules: CustomRules
+  // Embeds array - optional
+  embeds: {
+    description: 'Audio/video embeds for the song',
+    type: [EmbedSchema]
+  },
+
+  custom_rules: AuthorRules
 };
 
 module.exports = SongSchema;
