@@ -18,6 +18,7 @@
   },
   "scripts": {
     "build": "node build.js",
+    "build:schema": "node schema/build-schema.js",
     "parse:songs": "node parse-songs.js",
     "parse:contents": "node parse-contents.js",
     "parse:index": "node parse-index.js",
