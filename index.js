@@ -8,6 +8,7 @@ const { build } = require('./build');
 const { 
     validateSong, 
     validateSongFile, 
+    validateDirectory,
     formatValidationResults 
 } = require('./lib/validate');
 
