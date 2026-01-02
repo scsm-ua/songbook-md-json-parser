@@ -20,8 +20,8 @@ module.exports = {
     Song,
     processFiles,
     getDefaultPaths,
-    validateSongbook,
-    validateSongbookFile,
+    validateSong,
+    validateSongFile,
     validateDirectory,
     formatValidationResults
 };
