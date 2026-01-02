@@ -73,7 +73,7 @@ npm run validate:invalid
 # Run automated exit code tests
 npm test
 # or
-npm run test:validation
+npm run test
 ```
 
 ### Manual Testing

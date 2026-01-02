@@ -24,8 +24,7 @@
     "parse:index": "node parse-index.js",
     "validate": "node validate.js ./test-fixtures/valid",
     "validate:invalid": "node validate.js ./test-fixtures/invalid",
-    "test": "node test-exit-codes.js",
-    "test:validation": "node test-exit-codes.js"
+    "test": "node test-exit-codes.js"
   },
   "keywords": [
     "songbook",

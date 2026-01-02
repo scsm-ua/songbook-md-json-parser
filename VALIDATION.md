@@ -166,11 +166,6 @@ Added comprehensive validation documentation with:
 - CLI command examples
 - Schema description
 
-### 7. Example Script
-**File:** `examples-validation.js`
-
-Demonstrates all validation features with practical examples.
-
 ## Usage Patterns
 
 ### Pattern 1: Validate During Build
@@ -264,7 +259,6 @@ $ npm run validate
 - `schema/song.ajv-build.json` - Generated JSON Schema for AJV
 - `lib/validate.js` - Validation module
 - `validate.js` - CLI tool
-- `examples-validation.js` - Usage examples
 - `VALIDATION.md` - This document
 
 **Modified:**
