@@ -18,6 +18,86 @@ npm install github:username/songbook-md-json-parser
 
 ## Usage
 
+### Validation
+
+The package includes a comprehensive JSON validation system using AJV:
+
+#### Validate a Single JSON File
+
+```javascript
+const { validateSongbookFile } = require('songbook-md-json-parser/lib/validate');
+
+// Validate a file
+const result = validateSongbookFile('./example/json/my-song.json');
+
+if (result.valid) {
+    console.log('✅ Valid!');
+} else {
+    console.error('❌ Validation errors:', result.errors);
+}
+
+// Throw on error
+try {
+    validateSongbookFile('./song.json', { throwOnError: true });
+} catch (error) {
+    console.error('Validation failed:', error.message);
+}
+```
+
+#### Validate a JSON Object
+
+```javascript
+const { validateSongbook } = require('songbook-md-json-parser/lib/validate');
+
+const songData = {
+    meta: { page: 120, first_line: "song lyrics" },
+    title: ["Song Title"],
+    verses: [
+        { number: "1", text: ["verse line 1", "verse line 2"] }
+    ]
+};
+
+const result = validateSongbook(songData);
+if (!result.valid) {
+    console.error(result.errors);
+}
+```
+
+#### Validate All Files in a Directory
+
+```javascript
+const { validateDirectory, formatValidationResults } = require('songbook-md-json-parser/lib/validate');
+
+// Validate all JSON files in a directory
+const results = validateDirectory('./example/json');
+console.log(formatValidationResults(results));
+
+// Recursive validation
+const results = validateDirectory('./build/songs', { recursive: true });
+
+// Results object structure:
+// {
+//   totalFiles: 5,
+//   validFiles: 4,
+//   invalidFiles: [
+//     { file: 'path/to/file.json', errors: [...] }
+//   ]
+// }
+```
+
+#### CLI Validation
+
+```bash
+# Validate files in the example directory
+npm run validate
+
+# Or with npx
+npx songbook-validate ./example/json
+
+# Validate recursively
+npx songbook-validate ./build/songs --recursive
+```
+
 ### As a Package in Another Project
 
 ```javascript
@@ -78,6 +158,7 @@ npm run build            # Build everything (songs, contents, index)
 npm run parse:songs      # Parse markdown songs to JSON only
 npm run parse:contents   # Parse CONTENTS.md to JSON only
 npm run parse:index      # Parse INDEX.md to JSON only
+npm run validate         # Validate JSON files
 ```
 
 ### Using CLI Commands Directly
@@ -89,6 +170,7 @@ npx songbook-build              # Build everything
 npx songbook-parse-songs        # Parse songs from markdown to JSON
 npx songbook-parse-contents     # Parse contents file
 npx songbook-parse-index        # Parse index file
+npx songbook-validate           # Validate JSON files
 ```
 
 These commands will:
@@ -304,6 +386,33 @@ processFiles({
     }
 });
 ```
+
+## Validation
+
+The package includes JSON Schema validation using AJV. See the [Validation](#validation) section above for details.
+
+### Schema Source
+
+The validation schema is maintained in a simplified source format at [schema/song.source.js](schema/song.source.js) with:
+- Clean, readable JavaScript object notation
+- Nested schema definitions (MetaSchema, EmbedSchema, VerseSchema)
+- Custom validation rules in `custom_rules`
+
+To regenerate the JSON Schema after modifying the source:
+
+```bash
+node schema/build-schema.js
+```
+
+This converts [schema/song.source.js](schema/song.source.js) to [schema/song.ajv-build.json](schema/song.ajv-build.json) for AJV validation.
+
+### Schema Validation
+
+The schema is located at [schema/song.ajv-build.json](schema/song.ajv-build.json) and validates:
+- Required fields: `meta`, `title`, `verses`
+- Meta object with `first_line` (required), `page` (optional, number or array), `author` (optional), `verse parentheses` (optional)
+- Array of verses (all fields optional: `text`, `number`, `word_by_word`, `translation`, `synonyms`, `subtitle`)
+- Optional top-level fields: `word_by_word`, `author`, `subtitle`, `embeds`
 
 ## Markdown Format
 

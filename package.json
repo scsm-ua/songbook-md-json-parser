@@ -7,7 +7,8 @@
     "songbook-build": "./build.js",
     "songbook-parse-songs": "./parse-songs.js",
     "songbook-parse-contents": "./parse-contents.js",
-    "songbook-parse-index": "./parse-index.js"
+    "songbook-parse-index": "./parse-index.js",
+    "songbook-validate": "./validate.js"
   },
   "exports": {
     ".": {
@@ -17,10 +18,13 @@
   },
   "scripts": {
     "build": "node build.js",
+    "build:schema": "node schema/build-schema.js",
     "parse:songs": "node parse-songs.js",
     "parse:contents": "node parse-contents.js",
     "parse:index": "node parse-index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "validate": "node validate.js ./test-fixtures/valid",
+    "validate:invalid": "node validate.js ./test-fixtures/invalid",
+    "test": "node test-exit-codes.js"
   },
   "keywords": [
     "songbook",
@@ -30,6 +34,8 @@
   ],
   "license": "ISC",
   "dependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
     "js-yaml": "^4.1.0"
   }
 }

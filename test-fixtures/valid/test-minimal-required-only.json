@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "first_line": "Minimal song with only required fields",
+    "no-author": 1
+  },
+  "title": [
+    "Minimal Song"
+  ],
+  "verses": [
+    {
+      "text": [
+        "This is the simplest valid song",
+        "With only required fields"
+      ]
+    }
+  ]
+}

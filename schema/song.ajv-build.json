@@ -1,0 +1,212 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/songbook.schema.json",
+  "title": "Song",
+  "description": "Schema for song JSON format",
+  "type": "object",
+  "required": [
+    "meta",
+    "title",
+    "verses"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "description": "Page number(s) in the songbook",
+          "oneOf": [
+            {
+              "type": "number",
+              "description": "Single page number"
+            },
+            {
+              "type": "string",
+              "description": "Page number as string (e.g., '11/2')"
+            },
+            {
+              "type": "array",
+              "description": "Multiple page numbers",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 1
+            }
+          ]
+        },
+        "first_line": {
+          "description": "First line of the song",
+          "type": "string"
+        },
+        "author": {
+          "description": "Author of the song (single string in meta)",
+          "type": "string"
+        },
+        "no-author": {
+          "description": "Flag indicating no author (value must be 1)",
+          "enum": [
+            1
+          ],
+          "type": "number"
+        },
+        "translation": {
+          "description": "Translation status (only \"no\" is allowed)",
+          "enum": [
+            "no"
+          ],
+          "type": "string"
+        },
+        "verse parentheses": {
+          "description": "Formatting option for verse parentheses",
+          "enum": [
+            "non bold"
+          ],
+          "type": "string"
+        },
+        "inline verse": {
+          "description": "Formatting option for inline verses",
+          "enum": [
+            "non bold"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "first_line"
+      ],
+      "additionalProperties": false,
+      "description": "Metadata about the song"
+    },
+    "title": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Song title(s)",
+      "minItems": 1
+    },
+    "word_by_word": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Word-by-word translation for the entire song"
+    },
+    "author": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Author(s) of the song"
+    },
+    "subtitle": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Song subtitle(s)"
+    },
+    "verses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "description": "Verse number",
+            "type": "string"
+          },
+          "text": {
+            "description": "Verse lines",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "word_by_word": {
+            "description": "Word-by-word translation for this verse",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "translation": {
+            "description": "Verse translation",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subtitle": {
+            "description": "Subtitle for this verse or section",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "Song verses",
+      "minItems": 1
+    },
+    "embeds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "Title of the embed",
+            "type": "string"
+          },
+          "embed_url": {
+            "description": "URL of the embedded content",
+            "type": "string"
+          },
+          "iframe_url": {
+            "description": "URL for iframe embedding",
+            "type": "string"
+          },
+          "embed_code": {
+            "description": "HTML embed code",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "embed_url",
+          "iframe_url",
+          "embed_code"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Audio/video embeds for the song"
+    }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "author"
+      ]
+    },
+    {
+      "properties": {
+        "meta": {
+          "anyOf": [
+            {
+              "required": [
+                "author"
+              ]
+            },
+            {
+              "required": [
+                "no-author"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

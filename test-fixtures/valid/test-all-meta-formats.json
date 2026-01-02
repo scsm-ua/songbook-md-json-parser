@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "page": 997,
+    "first_line": "Test song with all meta formatting options",
+    "translation": "no",
+    "verse parentheses": "non bold",
+    "inline verse": "non bold",
+    "author": "Meta Author Name"
+  },
+  "title": [
+    "Song With All Meta Formats",
+    "Secondary Title"
+  ],
+  "author": [
+    "Root Level Author"
+  ],
+  "subtitle": [
+    "A comprehensive formatting test"
+  ],
+  "word_by_word": [
+    "**word** — translation; **another** — meaning"
+  ],
+  "verses": [
+    {
+      "number": "1",
+      "text": [
+        "First verse with all options"
+      ],
+      "word_by_word": [
+        "**word** — verse level translation"
+      ],
+      "translation": [
+        "This is the translation"
+      ],
+      "subtitle": [
+        "Verse subtitle"
+      ]
+    },
+    {
+      "number": "2",
+      "text": [
+        "Second verse"
+      ],
+      "translation": [
+        "Another translation"
+      ]
+    }
+  ],
+  "embeds": [
+    {
+      "title": "Audio Recording",
+      "embed_url": "https://example.com/audio/123",
+      "iframe_url": "https://example.com/embed/123",
+      "embed_code": "<iframe src=\"https://example.com/embed/123\"></iframe>"
+    }
+  ]
+}
