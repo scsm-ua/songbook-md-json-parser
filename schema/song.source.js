@@ -29,7 +29,7 @@ const MetaSchema = {
   translation: {
     description: 'Translation status (only "no" is allowed)',
     type: String,
-    enum: ['no']
+    enum: ['no', 'auto']
   },
   'verse parentheses': {
     description: 'Formatting option for verse parentheses',
