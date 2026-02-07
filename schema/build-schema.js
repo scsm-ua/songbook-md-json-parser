@@ -15,19 +15,11 @@ function convertType(typeValue) {
         // [Number] means array of numbers
         return {
           type: 'array',
-          description: 'Multiple page numbers',
           items: { type: getSimpleType(t[0]) },
           minItems: 1
         };
       }
-      const result = { type: getSimpleType(t) };
-      // Add specific descriptions
-      if (t === Number) {
-        result.description = 'Single page number';
-      } else if (t === String) {
-        result.description = "Page number as string (e.g., '11/2')";
-      }
-      return result;
+      return { type: getSimpleType(t) };
     });
     return { oneOf: options };
   }

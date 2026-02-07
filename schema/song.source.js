@@ -40,6 +40,14 @@ const MetaSchema = {
     description: 'Formatting option for inline verses',
     type: String,
     enum: ['non bold']
+  },
+  translator: {
+    description: 'Translator(s) of the song',
+    type: [String, [String]]
+  },
+  version: {
+    description: 'Version of the document',
+    type: String
   }
 };
 

@@ -17,16 +17,13 @@
           "description": "Page number(s) in the songbook",
           "oneOf": [
             {
-              "type": "number",
-              "description": "Single page number"
+              "type": "number"
             },
             {
-              "type": "string",
-              "description": "Page number as string (e.g., '11/2')"
+              "type": "string"
             },
             {
               "type": "array",
-              "description": "Multiple page numbers",
               "items": {
                 "type": "number"
               },
@@ -68,6 +65,25 @@
           "enum": [
             "non bold"
           ],
+          "type": "string"
+        },
+        "translator": {
+          "description": "Translator(s) of the song",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            }
+          ]
+        },
+        "version": {
+          "description": "Version of the document",
           "type": "string"
         }
       },
