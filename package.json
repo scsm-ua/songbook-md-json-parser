@@ -8,7 +8,9 @@
     "songbook-parse-songs": "./parse-songs.js",
     "songbook-parse-contents": "./parse-contents.js",
     "songbook-parse-index": "./parse-index.js",
-    "songbook-validate": "./validate.js"
+    "songbook-validate": "./validate.js",
+    "songbook-list-authors": "./list-authors.js",
+    "songbook-test-authors": "./test-authors.sh"
   },
   "exports": {
     ".": {
