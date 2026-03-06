@@ -1,9 +1,13 @@
 #!/bin/bash
 
 # Test that authors list matches authors.log
-# Usage: ./test-authors.sh [--json-dir=path]
+# Usage: songbook-test-authors [--json-dir=path]
 
-node list-authors.js "$@" | diff - authors.log
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Run list-authors from the same directory as this script
+node "$SCRIPT_DIR/list-authors.js" "$@" | diff - authors.log
 
 if [ $? -eq 0 ]; then
     echo "✓ Authors list matches authors.log"
