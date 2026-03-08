@@ -47,8 +47,16 @@ jobs:
         set -o pipefail
         pnpm run test 2>&1 | tee test-output.txt
       continue-on-error: true
+    
+    - name: Test authors list
+      id: test-authors
+      if: hashFiles('authors.log') != ''
+      run: |
+        set -o pipefail
+        pnpm run test:authors 2>&1 | tee test-authors-output.txt
+      continue-on-error: true
       
-    - name: Comment on PR
+    - name: Comment validation errors on PR
       if: steps.test.outcome == 'failure' && github.event_name == 'pull_request'
       uses: actions/github-script@v7
       with:
@@ -61,6 +69,20 @@ jobs:
             repo: context.repo.repo,
             body: `## ❌ Validation Failed\n\n<details><summary>Error Details</summary>\n\n\`\`\`\n${output}\n\`\`\`\n\n</details>`
           });
+    
+    - name: Comment authors changes on PR
+      if: steps.test-authors.outcome == 'failure' && github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const output = fs.readFileSync('test-authors-output.txt', 'utf8');
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `## ❌ Authors List Changed\n\n\`\`\`diff\n${output}\n\`\`\`\n\nUpdate the baseline: \`npm run update-authors\``
+          });
       
-    - if: steps.test.outcome == 'failure'
+    - if: steps.test.outcome == 'failure' || steps.test-authors.outcome == 'failure'
       run: exit 1

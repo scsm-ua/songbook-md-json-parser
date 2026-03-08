@@ -11,6 +11,7 @@ const {
     validateDirectory,
     formatValidationResults 
 } = require('./lib/validate');
+const { listAuthors } = require('./lib/list-authors');
 
 module.exports = {
     build,
@@ -24,5 +25,6 @@ module.exports = {
     validateSong,
     validateSongFile,
     validateDirectory,
-    formatValidationResults
+    formatValidationResults,
+    listAuthors
 };
