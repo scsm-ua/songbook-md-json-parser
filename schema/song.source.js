@@ -17,6 +17,10 @@ const MetaSchema = {
     type: String,
     required: true
   },
+  alt_first_lines: {
+    description: 'Alternative first line(s) of the song',
+    type: [String, [String]]
+  },
   author: {
     description: 'Author of the song (single string in meta)',
     type: String
