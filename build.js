@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+const fs = require('fs');
+const path = require('path');
 const { parseSongs } = require('./lib/parse-songs');
 const { parseContents, parseIndex } = require('./lib/parse-meta');
 
@@ -55,6 +57,14 @@ function build(options = {}) {
     };
 
     try {
+        // Clean the json output directory so stale files from deleted markdown are removed
+        const jsonDir = path.join(projectDir, 'json');
+        if (fs.existsSync(jsonDir)) {
+            console.log('=== Cleaning json directory ===');
+            fs.rmSync(jsonDir, { recursive: true, force: true });
+            console.log(`Removed ${path.relative(projectDir, jsonDir)}\n`);
+        }
+
         if (songs) {
             console.log('=== Parsing Songs ===');
             parseSongs({ projectDir, ...songsOptions });
