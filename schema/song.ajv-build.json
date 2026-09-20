@@ -35,6 +35,21 @@
           "description": "First line of the song",
           "type": "string"
         },
+        "alt_first_lines": {
+          "description": "Alternative first line(s) of the song",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            }
+          ]
+        },
         "author": {
           "description": "Author of the song (single string in meta)",
           "type": "string"
