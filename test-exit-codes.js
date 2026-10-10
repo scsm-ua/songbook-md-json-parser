@@ -34,6 +34,12 @@ const tests = [
     dir: './test-fixtures/invalid-pages',
     type: 'page',
     shouldPass: false
+  },
+  {
+    name: 'Directory without --type (should fail)',
+    dir: './test-fixtures/valid-songs',
+    type: null,
+    shouldPass: false
   }
 ];
 
