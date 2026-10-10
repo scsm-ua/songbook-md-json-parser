@@ -181,11 +181,11 @@ console.log(formatValidationResults(results));
 
 Located in `test-fixtures/`:
 
-**Valid examples** (`test-fixtures/valid/`):
+**Valid examples** (`test-fixtures/valid-songs/`):
 - Reference implementations
 - Example song files that pass validation
 
-**Invalid test cases** (`test-fixtures/invalid/`):
+**Invalid test cases** (`test-fixtures/invalid-songs/`):
 
 1. `missing-required-fields.json` - Missing `first_line` and `verses`
 2. `missing-author.json` - No author field (violates anyOf rule)
@@ -199,10 +199,10 @@ Located in `test-fixtures/`:
 
 ```bash
 # Test with valid files (exit code 0)
-npm run validate
+npm run validate:songs
 
 # Test with invalid files (exit code 1)
-npm run validate:invalid
+npm run validate:songs:invalid
 
 # Run all automated tests
 npm test
@@ -212,7 +212,7 @@ npm test
 
 ```bash
 # Test specific directory
-node validate.js ./test-fixtures/valid
+node validate.js ./test-fixtures/valid-songs
 
 # Check exit code (bash/zsh)
 echo $?  # Prints 0 for success, 1 for failure

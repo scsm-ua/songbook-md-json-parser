@@ -12,13 +12,27 @@ console.log('🧪 Testing validation exit codes...\n');
 
 const tests = [
   {
-    name: 'Valid files (test-fixtures/valid)',
-    dir: './test-fixtures/valid',
+    name: 'Valid songs (test-fixtures/valid-songs)',
+    dir: './test-fixtures/valid-songs',
+    type: 'song',
     shouldPass: true
   },
   {
-    name: 'Invalid files (test-fixtures/invalid)',
-    dir: './test-fixtures/invalid',
+    name: 'Invalid songs (test-fixtures/invalid-songs)',
+    dir: './test-fixtures/invalid-songs',
+    type: 'song',
+    shouldPass: false
+  },
+  {
+    name: 'Valid pages (test-fixtures/valid-pages)',
+    dir: './test-fixtures/valid-pages',
+    type: 'page',
+    shouldPass: true
+  },
+  {
+    name: 'Invalid pages (test-fixtures/invalid-pages)',
+    dir: './test-fixtures/invalid-pages',
+    type: 'page',
     shouldPass: false
   }
 ];
@@ -28,8 +42,10 @@ let allTestsPassed = true;
 for (const test of tests) {
   process.stdout.write(`Testing: ${test.name}... `);
   
+  const typeFlag = test.type ? ` --type ${test.type}` : '';
+  
   try {
-    execSync(`node validate.js ${test.dir}`, { 
+    execSync(`node validate.js ${test.dir}${typeFlag}`, { 
       stdio: 'pipe',
       encoding: 'utf8'
     });
