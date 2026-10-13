@@ -6,6 +6,7 @@
   "bin": {
     "songbook-build": "./build.js",
     "songbook-parse-songs": "./parse-songs.js",
+    "songbook-parse-pages": "./parse-pages.js",
     "songbook-parse-contents": "./parse-contents.js",
     "songbook-parse-index": "./parse-index.js",
     "songbook-validate": "./validate.js",
@@ -20,8 +21,10 @@
   },
   "scripts": {
     "build:schema": "node schema/build-schema.js",
-    "validate": "node validate.js ./test-fixtures/valid",
-    "validate:invalid": "node validate.js ./test-fixtures/invalid",
+    "validate:songs": "node validate.js ./test-fixtures/valid-songs --type song",
+    "validate:songs:invalid": "node validate.js ./test-fixtures/invalid-songs --type song",
+    "validate:pages": "node validate.js ./test-fixtures/valid-pages --type page",
+    "validate:pages:invalid": "node validate.js ./test-fixtures/invalid-pages --type page",
     "test": "node test-exit-codes.js"
   },
   "keywords": [
