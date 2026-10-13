@@ -101,6 +101,31 @@
         "version": {
           "description": "Version of the document",
           "type": "string"
+        },
+        "styles": {
+          "description": "Optional styling options for the song",
+          "type": "object",
+          "properties": {
+            "verses": {
+              "description": "Styling options for verses",
+              "type": "object",
+              "properties": {
+                "wide": {
+                  "description": "When false, disables auto wide layout for long-line verses",
+                  "type": "boolean"
+                },
+                "align": {
+                  "description": "When \"left\", forces left alignment without left margin for wide verses that are not wide enough for auto detection",
+                  "enum": [
+                    "left"
+                  ],
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
         }
       },
       "required": [
