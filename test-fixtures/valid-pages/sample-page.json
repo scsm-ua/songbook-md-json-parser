@@ -1,6 +1,7 @@
 {
   "meta": {
     "page": 7,
+    "title": "Introduction",
     "first_line": "Glories to the spiritual master"
   },
   "body": "# Introduction\n\nThis is an arbitrary markdown page.\n\n- bullet one\n- bullet two\n\nSome closing paragraph."

@@ -52,6 +52,25 @@ const MetaSchema = {
   version: {
     description: 'Version of the document',
     type: String
+  },
+  styles: {
+    description: 'Optional styling options for the song',
+    type: {
+      verses: {
+        description: 'Styling options for verses',
+        type: {
+          wide: {
+            description: 'When false, disables auto wide layout for long-line verses',
+            type: Boolean
+          },
+          align: {
+            description: 'When "left", forces left alignment without left margin for wide verses that are not wide enough for auto detection',
+            type: String,
+            enum: ['left']
+          }
+        }
+      }
+    }
   }
 };
 
