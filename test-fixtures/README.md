@@ -36,7 +36,6 @@ test-fixtures/
 | **verse.word_by_word** | Per-verse translation | acharya-varyam.json, akrodha-paramananda.json, test-all-meta-formats.json |
 | **verse.translation** | Verse translation | Most files |
 | **verse.subtitle** | Verse/section subtitle | ha-ha-bhaktivinoda.json, test-all-meta-formats.json |
-| **embeds** | Audio/video embeds | jaya-guru-maharaja.json, jaya-jaya-gaurachander.json, krishna-hoite.json, test-all-meta-formats.json |
 
 ✅ = Required field
 
@@ -47,15 +46,15 @@ test-fixtures/
 - **akrodha-paramananda.json** - Song with root-level word_by_word and author
 - **goswaminam-sudhirakhyam.json** - Song with page as string, meta.author
 - **ha-ha-bhaktivinoda-thakkura-guroh.json** - Song with subtitle, verse subtitle
-- **jaya-guru-maharaja-jati-rajeshvara.json** - Song with page array, embeds
+- **jaya-guru-maharaja-jati-rajeshvara.json** - Song with page array
 - **jaya-jaya-gaurachander-arotiko-shobha.json** - Song with verse parentheses formatting
-- **krishna-hoite-chatur-mukha.json** - Song with embeds, meta.author
+- **krishna-hoite-chatur-mukha.json** - Song with meta.author
 
 #### Additional Test Files (4 files)
 - **test-meta-translation-no.json** - Tests `meta.translation: "no"` feature
 - **test-meta-inline-verse.json** - Tests `meta.inline verse: "non bold"` feature
 - **test-minimal-required-only.json** - Minimal valid song (only required fields)
-- **test-all-meta-formats.json** - Comprehensive test with all meta formatting options, both author locations, embeds, and all verse fields
+- **test-all-meta-formats.json** - Comprehensive test with all meta formatting options, both author locations, and all verse fields
 
 ### Coverage Statistics
 

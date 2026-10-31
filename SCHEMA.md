@@ -18,7 +18,6 @@ Songs are validated against a JSON Schema that ensures structural correctness.
 - `author` - Array of author names
 - `subtitle` - Array of subtitle strings  
 - `word_by_word` - Array for word-by-word translation
-- `embeds` - Array of audio/video embed objects
 
 ### Meta Object
 
@@ -56,14 +55,6 @@ All fields optional:
 - `word_by_word` (array of strings) - Word-by-word translation
 - `translation` (array of strings) - Verse translation
 - `subtitle` (array of strings) - Verse subtitle
-
-### Embed Object
-
-All fields required:
-- `title` (string)
-- `embed_url` (string)
-- `iframe_url` (string)
-- `embed_code` (string)
 
 ### Author Validation Rule
 

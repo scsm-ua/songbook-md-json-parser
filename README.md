@@ -176,7 +176,7 @@ Translation line 2
 The package validates JSON against a strict schema:
 
 - **Required:** `meta` (with `first_line`), `title`, `verses`
-- **Optional:** `author`, `subtitle`, `word_by_word`, `embeds`
+- **Optional:** `author`, `subtitle`, `word_by_word`
 - **Author rules:** Must have root `author`, `meta.author`, or `meta.no-author: 1`
 
 Run validation:

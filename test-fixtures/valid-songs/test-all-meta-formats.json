@@ -45,13 +45,5 @@
         "Another translation"
       ]
     }
-  ],
-  "embeds": [
-    {
-      "title": "Audio Recording",
-      "embed_url": "https://example.com/audio/123",
-      "iframe_url": "https://example.com/embed/123",
-      "embed_code": "<iframe src=\"https://example.com/embed/123\"></iframe>"
-    }
   ]
 }

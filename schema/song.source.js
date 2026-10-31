@@ -74,32 +74,6 @@ const MetaSchema = {
 };
 
 /**
- * Embed Schema - Audio/video embed
- */
-const EmbedSchema = {
-  title: {
-    description: 'Title of the embed',
-    type: String,
-    required: true
-  },
-  embed_url: {
-    description: 'URL of the embedded content',
-    type: String,
-    required: true
-  },
-  iframe_url: {
-    description: 'URL for iframe embedding',
-    type: String,
-    required: true
-  },
-  embed_code: {
-    description: 'HTML embed code',
-    type: String,
-    required: true
-  }
-};
-
-/**
  * Verse Schema - Song verse
  */
 const VerseSchema = {
@@ -192,12 +166,6 @@ const SongSchema = {
     type: [VerseSchema],
     required: true,
     minItems: 1
-  },
-
-  // Embeds array - optional
-  embeds: {
-    description: 'Audio/video embeds for the song',
-    type: [EmbedSchema]
   },
 
   custom_rules: AuthorRules
