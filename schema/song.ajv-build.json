@@ -69,20 +69,6 @@
           ],
           "type": "string"
         },
-        "verse parentheses": {
-          "description": "Formatting option for verse parentheses",
-          "enum": [
-            "non bold"
-          ],
-          "type": "string"
-        },
-        "inline verse": {
-          "description": "Formatting option for inline verses",
-          "enum": [
-            "non bold"
-          ],
-          "type": "string"
-        },
         "translator": {
           "description": "Translator(s) of the song",
           "oneOf": [
@@ -120,6 +106,17 @@
                     "left"
                   ],
                   "type": "string"
+                },
+                "inline": {
+                  "description": "Treat verses without numbers as inline translation quotations; hidden in \"hide translation\" mode",
+                  "type": "object",
+                  "properties": {
+                    "bold": {
+                      "description": "When false, inline verses are rendered non bold",
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
                 }
               },
               "additionalProperties": false

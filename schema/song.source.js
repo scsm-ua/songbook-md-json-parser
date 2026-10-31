@@ -35,16 +35,6 @@ const MetaSchema = {
     type: String,
     enum: ['no', 'auto']
   },
-  'verse parentheses': {
-    description: 'Formatting option for verse parentheses',
-    type: String,
-    enum: ['non bold']
-  },
-  'inline verse': {
-    description: 'Formatting option for inline verses',
-    type: String,
-    enum: ['non bold']
-  },
   translator: {
     description: 'Translator(s) of the song',
     type: [String, [String]]
@@ -67,6 +57,15 @@ const MetaSchema = {
             description: 'When "left", forces left alignment without left margin for wide verses that are not wide enough for auto detection',
             type: String,
             enum: ['left']
+          },
+          inline: {
+            description: 'Treat verses without numbers as inline translation quotations; hidden in "hide translation" mode',
+            type: {
+              bold: {
+                description: 'When false, inline verses are rendered non bold',
+                type: Boolean
+              }
+            }
           }
         }
       }
