@@ -35,16 +35,6 @@ const MetaSchema = {
     type: String,
     enum: ['no', 'auto']
   },
-  'verse parentheses': {
-    description: 'Formatting option for verse parentheses',
-    type: String,
-    enum: ['non bold']
-  },
-  'inline verse': {
-    description: 'Formatting option for inline verses',
-    type: String,
-    enum: ['non bold']
-  },
   translator: {
     description: 'Translator(s) of the song',
     type: [String, [String]]
@@ -67,36 +57,19 @@ const MetaSchema = {
             description: 'When "left", forces left alignment without left margin for wide verses that are not wide enough for auto detection',
             type: String,
             enum: ['left']
+          },
+          inline: {
+            description: 'Treat verses without numbers as inline translation quotations; hidden in "hide translation" mode',
+            type: {
+              bold: {
+                description: 'When false, inline verses are rendered non bold',
+                type: Boolean
+              }
+            }
           }
         }
       }
     }
-  }
-};
-
-/**
- * Embed Schema - Audio/video embed
- */
-const EmbedSchema = {
-  title: {
-    description: 'Title of the embed',
-    type: String,
-    required: true
-  },
-  embed_url: {
-    description: 'URL of the embedded content',
-    type: String,
-    required: true
-  },
-  iframe_url: {
-    description: 'URL for iframe embedding',
-    type: String,
-    required: true
-  },
-  embed_code: {
-    description: 'HTML embed code',
-    type: String,
-    required: true
   }
 };
 
@@ -193,12 +166,6 @@ const SongSchema = {
     type: [VerseSchema],
     required: true,
     minItems: 1
-  },
-
-  // Embeds array - optional
-  embeds: {
-    description: 'Audio/video embeds for the song',
-    type: [EmbedSchema]
   },
 
   custom_rules: AuthorRules

@@ -18,17 +18,34 @@ Songs are validated against a JSON Schema that ensures structural correctness.
 - `author` - Array of author names
 - `subtitle` - Array of subtitle strings  
 - `word_by_word` - Array for word-by-word translation
-- `embeds` - Array of audio/video embed objects
 
 ### Meta Object
 
 - `first_line` (string, **required**)
+- `alt_first_lines` (string | array of strings) - Alternative first line(s)
 - `page` (number | string | array) - Page number(s)
 - `author` (string) - Author name in meta
 - `no-author` (number) - Must be `1` if present
-- `translation` (string) - Must be `"no"` if present
-- `verse parentheses` (string) - Must be `"non bold"` if present
-- `inline verse` (string) - Must be `"non bold"` if present
+- `translation` (string) - `"no"` or `"auto"`
+- `translator` (string | array of strings) - Translator(s)
+- `version` (string) - Document version
+- `styles` (object) - Optional styling options, see below
+
+### Styles Object
+
+```yaml
+styles:
+  verses:
+    wide: false
+    align: left
+    inline:
+      bold: false
+```
+
+- `styles.verses.wide` (boolean) - `false` disables auto wide layout for long-line verses
+- `styles.verses.align` (string) - `"left"` forces left alignment without left margin for wide verses not detected automatically
+- `styles.verses.inline` (object) - Verses without numbers are treated as inline translation quotations; they are hidden in "hide translation" mode
+  - `bold` (boolean) - `false` renders inline verses non bold
 
 ### Verse Object
 
@@ -38,14 +55,6 @@ All fields optional:
 - `word_by_word` (array of strings) - Word-by-word translation
 - `translation` (array of strings) - Verse translation
 - `subtitle` (array of strings) - Verse subtitle
-
-### Embed Object
-
-All fields required:
-- `title` (string)
-- `embed_url` (string)
-- `iframe_url` (string)
-- `embed_code` (string)
 
 ### Author Validation Rule
 
