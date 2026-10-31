@@ -2,7 +2,13 @@
   "meta": {
     "page": 998,
     "first_line": "Test song with inline verse formatting",
-    "inline verse": "non bold"
+    "styles": {
+      "verses": {
+        "inline": {
+          "bold": false
+        }
+      }
+    }
   },
   "title": [
     "Song With Inline Verse"

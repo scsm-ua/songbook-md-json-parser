@@ -3,9 +3,16 @@
     "page": 997,
     "first_line": "Test song with all meta formatting options",
     "translation": "no",
-    "verse parentheses": "non bold",
-    "inline verse": "non bold",
-    "author": "Meta Author Name"
+    "author": "Meta Author Name",
+    "styles": {
+      "verses": {
+        "wide": false,
+        "align": "left",
+        "inline": {
+          "bold": false
+        }
+      }
+    }
   },
   "title": [
     "Song With All Meta Formats",

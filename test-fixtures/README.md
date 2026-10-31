@@ -24,8 +24,8 @@ test-fixtures/
 | **meta.author** | Author in meta object | goswaminam-sudhirakhyam.json, krishna-hoite.json, test-all-meta-formats.json |
 | **meta.no-author** | Flag for songs with no author | acharya-varyam.json, test-minimal-required-only.json |
 | **meta.translation: "no"** | Mark song as untranslated | test-meta-translation-no.json, test-all-meta-formats.json |
-| **meta.verse parentheses** | Formatting option | jaya-jaya-gaurachander.json, test-all-meta-formats.json |
-| **meta.inline verse** | Formatting option | test-meta-inline-verse.json, test-all-meta-formats.json |
+| **meta.styles.verses.wide / align** | Verse layout options | test-all-meta-formats.json |
+| **meta.styles.verses.inline.bold** | Inline verse formatting | test-meta-inline-verse.json, test-all-meta-formats.json |
 | **title** ✅ | Required array | All files |
 | **word_by_word** (root) | Song-level translation | akrodha-paramananda.json, test-all-meta-formats.json |
 | **author** (root) | Author array | akrodha-paramananda.json, ha-ha-bhaktivinoda.json, jaya-guru-maharaja.json, jaya-jaya-gaurachander.json, krishna-hoite.json, test-all-meta-formats.json |
@@ -47,12 +47,12 @@ test-fixtures/
 - **goswaminam-sudhirakhyam.json** - Song with page as string, meta.author
 - **ha-ha-bhaktivinoda-thakkura-guroh.json** - Song with subtitle, verse subtitle
 - **jaya-guru-maharaja-jati-rajeshvara.json** - Song with page array
-- **jaya-jaya-gaurachander-arotiko-shobha.json** - Song with verse parentheses formatting
+- **jaya-jaya-gaurachander-arotiko-shobha.json** - Song with parenthesized first line
 - **krishna-hoite-chatur-mukha.json** - Song with meta.author
 
 #### Additional Test Files (4 files)
 - **test-meta-translation-no.json** - Tests `meta.translation: "no"` feature
-- **test-meta-inline-verse.json** - Tests `meta.inline verse: "non bold"` feature
+- **test-meta-inline-verse.json** - Tests `meta.styles.verses.inline.bold: false` feature
 - **test-minimal-required-only.json** - Minimal valid song (only required fields)
 - **test-all-meta-formats.json** - Comprehensive test with all meta formatting options, both author locations, and all verse fields
 
