@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/page.schema.json",
+  "title": "Page",
+  "description": "Schema for page JSON format",
+  "type": "object",
+  "required": [
+    "body"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "description": "Page number(s) in the songbook",
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 1
+            }
+          ]
+        },
+        "title": {
+          "description": "Page title",
+          "type": "string"
+        },
+        "first_line": {
+          "description": "First line of the page (used for the index)",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ],
+      "additionalProperties": false,
+      "description": "Metadata about the page"
+    },
+    "body": {
+      "type": "string",
+      "description": "Page body as markdown"
+    }
+  },
+  "additionalProperties": false
+}

@@ -114,12 +114,18 @@ function convertObjectSchema(schema) {
   return result;
 }
 
-function convertSourceToJsonSchema(sourceSchema) {
+function convertSourceToJsonSchema(sourceSchema, meta = {}) {
+  const {
+    $id = 'https://example.com/songbook.schema.json',
+    title = 'Song',
+    description = 'Schema for song JSON format'
+  } = meta;
+
   const jsonSchema = {
     $schema: 'http://json-schema.org/draft-07/schema#',
-    $id: 'https://example.com/songbook.schema.json',
-    title: 'Song',
-    description: 'Schema for song JSON format',
+    $id,
+    title,
+    description,
     type: 'object',
     required: [],
     properties: {}
@@ -169,36 +175,65 @@ function convertSourceToJsonSchema(sourceSchema) {
   return jsonSchema;
 }
 
-// Main execution
-function main() {
-  const sourcePath = path.join(__dirname, 'song.source.js');
-  const outputPath = path.join(__dirname, 'song.ajv-build.json');
-  
+// Schemas to build
+const SCHEMAS = [
+  {
+    source: 'song.source.js',
+    output: 'song.ajv-build.json',
+    meta: {
+      $id: 'https://example.com/songbook.schema.json',
+      title: 'Song',
+      description: 'Schema for song JSON format'
+    }
+  },
+  {
+    source: 'page.source.js',
+    output: 'page.ajv-build.json',
+    meta: {
+      $id: 'https://example.com/page.schema.json',
+      title: 'Page',
+      description: 'Schema for page JSON format'
+    }
+  }
+];
+
+function buildSchema({ source, output, meta }) {
+  const sourcePath = path.join(__dirname, source);
+  const outputPath = path.join(__dirname, output);
+
   console.log('📖 Reading source schema from:', sourcePath);
-  
+
   // Clear require cache to get fresh version
   delete require.cache[require.resolve(sourcePath)];
-  
+
   // Load the source schema
   const sourceSchema = require(sourcePath);
-  
+
   console.log('🔄 Converting to JSON Schema...');
-  
+
   // Convert to JSON Schema
-  const jsonSchema = convertSourceToJsonSchema(sourceSchema);
-  
+  const jsonSchema = convertSourceToJsonSchema(sourceSchema, meta);
+
   // Write to file
   fs.writeFileSync(
     outputPath,
     JSON.stringify(jsonSchema, null, 2),
     'utf8'
   );
-  
+
   console.log('✅ JSON Schema generated:', outputPath);
   console.log('\n📊 Schema summary:');
   console.log(`   - Required fields: ${jsonSchema.required.length}`);
   console.log(`   - Total properties: ${Object.keys(jsonSchema.properties).length}`);
   console.log(`   - Custom rules: ${jsonSchema.anyOf ? 'anyOf validation present' : 'none'}`);
+}
+
+// Main execution
+function main() {
+  SCHEMAS.forEach((schema, index) => {
+    if (index > 0) console.log();
+    buildSchema(schema);
+  });
 }
 
 if (require.main === module) {

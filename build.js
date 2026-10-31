@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { parseSongs } = require('./lib/parse-songs');
+const { parsePages } = require('./lib/parse-pages');
 const { parseContents, parseIndex } = require('./lib/parse-meta');
 
 /**
@@ -16,12 +17,13 @@ const { parseContents, parseIndex } = require('./lib/parse-meta');
  * @param {object} options - Optional configuration
  * @param {string} options.projectDir - The root directory of the project (default: process.cwd())
  * @param {boolean} options.songs - Whether to parse songs (default: true)
+ * @param {boolean} options.pages - Whether to parse pages (default: true)
  * @param {boolean} options.contents - Whether to parse contents (default: true)
  * @param {boolean} options.index - Whether to parse index (default: true)
  * @param {object} options.songsOptions - Options to pass to parseSongs
+ * @param {object} options.pagesOptions - Options to pass to parsePages
  * @param {object} options.contentsOptions - Options to pass to parseContents
- * @param {object} options.indexOptions - Options to pass to parseIndex
- * 
+ * @param {object} options.indexOptions - Options to pass to parseIndex 
  * @example
  * // Default usage - parse everything
  * build();
@@ -41,9 +43,11 @@ function build(options = {}) {
     const {
         projectDir = process.cwd(),
         songs = true,
+        pages = true,
         contents = true,
         index = true,
         songsOptions = {},
+        pagesOptions = {},
         contentsOptions = {},
         indexOptions = {}
     } = options;
@@ -52,6 +56,7 @@ function build(options = {}) {
 
     const results = {
         songs: null,
+        pages: null,
         contents: null,
         index: null
     };
@@ -69,6 +74,18 @@ function build(options = {}) {
             console.log('=== Parsing Songs ===');
             parseSongs({ projectDir, ...songsOptions });
             results.songs = 'success';
+            console.log();
+        }
+
+        if (pages) {
+            console.log('=== Parsing Pages ===');
+            try {
+                parsePages({ projectDir, ...pagesOptions });
+                results.pages = 'success';
+            } catch (error) {
+                console.warn('⚠ Pages parsing failed:', error.message);
+                results.pages = 'skipped';
+            }
             console.log();
         }
 
