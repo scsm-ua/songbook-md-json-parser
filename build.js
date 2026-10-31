@@ -80,8 +80,7 @@ function build(options = {}) {
         if (pages) {
             console.log('=== Parsing Pages ===');
             try {
-                parsePages({ projectDir, ...pagesOptions });
-                results.pages = 'success';
+                results.pages = parsePages({ projectDir, ...pagesOptions }) ? 'success' : 'skipped';
             } catch (error) {
                 console.warn('⚠ Pages parsing failed:', error.message);
                 results.pages = 'skipped';
